@@ -1,0 +1,194 @@
+import React, { useState } from 'react';
+import { FaFacebookF, FaTwitter, FaInstagram, FaWhatsapp  } from "react-icons/fa";
+import FooterDocuments from './documents';
+import { Link, useNavigate } from 'react-router-dom';
+import Feedback from './feedback';
+import Toast from './Toastify';
+
+const Footer = ({ user }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isFormOpen, setFormOpen] = useState(false);
+  const [toast, setToast] = useState({ show: false, type: '', title: '', message: '' });
+  const navigate = useNavigate('');
+
+  // Function to open modal
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  // Function to close modal
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+
+  // Function to open Form
+  const openForm = () => {
+    if (!user) {
+      // Show the success toast
+      setToast({
+        show: true,
+        type: 'info',
+        title: 'info',
+        message: 'Please Login First!',
+      });
+
+      // Show the success toast for 1 seconds, then navigate
+      setTimeout(() => {
+        setToast({ show: false });
+        navigate('/login');
+      }, 1000);
+      return;
+    }
+    setFormOpen(true);
+  };
+
+  // Function to close Form
+  const closeForm = () => {
+    setFormOpen(false);
+  };
+
+
+  return (
+    <>
+      <footer className="bottom-0 bg-success text-white w-full px-4 border-t-4 dark:bg-boxdark dark:text-bodydark shadow-md dark:shadow-none">
+        <div className="container  flex flex-col justify-between py-4 mx-auto space-y-8 lg:flex-row lg:space-y-0">
+          <div className="lg:w-1/3">
+            <a rel="noopener noreferrer" href="#" className="flex justify-center space-x-3 lg:justify-start">
+              <div className="flex items-center justify-center">
+                <img
+                  src="https://res.cloudinary.com/dq7vggsop/image/upload/v1711532480/jfqcm2s1ekxloucjk72p.png"
+                  alt="Logo"
+                   className="w-12 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 max-w-full h-auto"
+                />
+              </div>
+              <span className="self-center font-semibold">
+                <div className="text-[16px] lg:text-[12px] text-center font-bold underline text-white rounded-md">
+                  <a href="https://www.karnatakaagribusiness.com/"
+                    className='hover:text-primary hover:underline mx-5'
+                  >
+                    www.karnatakaagribusiness.com
+                  </a>
+                </div>
+              </span>
+            </a>
+            <div className="mx-8" >
+              <h4 className="text-center font-bold text-xl">Location</h4>
+              <div className="overflow-auto locationFrame me-5">
+                {/* Embedded location iframe */}
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7774.622049300553!2d77.5425519!3d13.015855!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3d16cdf05995%3A0x3710354fdabf9e1b!2sWay2Agribusiness%20India%20Pvt%20LTD!5e0!3m2!1sen!2sin!4v1729484414022!5m2!1sen!2sin"
+                  width="400"
+                  height="400"
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="location"
+                  className='w-full h-44 rounded-xl'
+                >
+                </iframe>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 text-sm gap-x-6 lg:w-2/3 sm:grid-cols-3">
+            <div className="space-y-3">
+              <h3 className="tracking-wide uppercase dark:text-gray-900 font-bold">About Us</h3>
+              <ul className="space-y-3">
+                <li onClick={openModal}><a rel="noopener noreferrer" href="#WWA" className='hover:underline'>Who We Are?</a></li>
+                <li onClick={openModal}><a rel="noopener noreferrer" href="#UG" className='hover:underline'>User guidelines</a></li>
+                <li onClick={openModal}><a rel="noopener noreferrer" href="#DSLM" className='hover:underline'>Disclaimer</a></li>
+                <li onClick={openForm}><a rel="noopener noreferrer" className='hover:underline cursor-pointer'>Feedback</a></li>
+                <li onClick={openModal}><a rel="noopener noreferrer" href="#add" className='hover:underline'>Address</a></li>
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <h3 className="uppercase dark:text-gray-900 font-bold">Vendor Tool Kit</h3>
+              <ul className="space-y-3">
+                <li onClick={openModal}><a rel="noopener noreferrer" href="#WCV" className='hover:underline'>Who can be a Vendor?</a></li>
+                <li onClick={openModal}><a rel="noopener noreferrer" href="#GDPV" className='hover:underline'>Guideline for Product Vendor</a></li>
+                <li onClick={openModal}><a rel="noopener noreferrer" href="#GSV" className='hover:underline'>Guidelines for Service Vendor</a></li>
+                <li onClick={openModal}><a rel="noopener noreferrer" href="#HBU" className='hover:underline'>How you benefit with us?</a></li>
+                <li><Link to="/login" className='hover:underline'>Get your leads</Link></li>
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <h3 className="uppercase dark:text-gray-900 font-bold md:mt-0 mt-5">Buyers Tool Kit</h3>
+              <ul className="space-y-3">
+                <li><a rel="noopener noreferrer" href="#enquiry" className='hover:underline'>Post your requirement</a></li>
+                <li onClick={openModal}><a rel="noopener noreferrer" href="#GFB" className='hover:underline'>Guidelines for Buyer</a></li>
+                <li onClick={openModal}><a rel="noopener noreferrer" href="#HBU2" className='hover:underline'>How you benefit with us?</a></li>
+                <li><a rel="noopener noreferrer" href="https://www.karnatakaagribusiness.com/" className='hover:underline'>Search products and suppliers</a></li>
+              </ul>
+            </div>
+
+            <div className="col-span-2 mt-3 md:mt-0">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between space-x-12">
+                {/* Copyright Text */}
+                <div className="flex justify-center md:justify-start mb-2 md:mb-0">
+                  <p className="text-sm text-center md:text-left">
+                    Copyright &copy; 2024 Karnataka Agribusiness. All rights reserved.
+                  </p>
+                </div>
+
+                {/* Social Media Icons */}
+                <div className="flex space-x-4 text-xl justify-center md:justify-end mt-3 md:mt-0">
+                  <a
+                    href="https://www.facebook.com/people/Karnataka-Agribusiness/100057054596027/?locale=uk_UA"
+                    aria-label="Facebook"
+                    title="Facebook"
+                  >
+                    <FaFacebookF className="hover:text-primary" />
+                  </a>
+                  <a
+                    href="https://x.com/KA_Agribusiness"
+                    aria-label="Twitter"
+                    title="Twitter"
+                  >
+                    <FaTwitter className="hover:text-secondary" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/karnataka_agribusiness/profilecard/?igsh=OGJheXpwc2l5MzQ2"
+                    aria-label="Instagram"
+                    title="Instagram"
+                  >
+                    <FaInstagram className="hover:text-danger" />
+                  </a>
+                  <a
+                    href="https://wa.me/919449004956"
+                    aria-label="What'sApp"
+                    title="What'sApp"
+                  >
+                    <FaWhatsapp  className="dark:hover:text-success" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Customer Care */}
+              <div className="mt-4 md:mt-0 text-center md:text-left">
+                <h4 className="text-sm">Customer Care: +918024484173</h4>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </footer>
+
+      {/* Conditionally render the modal */}
+      {isModalOpen && <FooterDocuments closeModal={closeModal} />}
+
+
+      {/* Conditionally render the Form */}
+      {isFormOpen && <Feedback closeForm={closeForm} userID={user._id} />}
+
+      {/* Toast notification */}
+      {toast.show && (
+        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50">
+          <Toast type={toast.type} title={toast.title} message={toast.message} onClose={() => setToast({ show: false })} />
+        </div>
+      )}
+    </>
+  );
+};
+
+export default Footer;

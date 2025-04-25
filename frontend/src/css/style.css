@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-satoshi font-normal text-base text-body bg-whiten relative z-1;
+  }
+}
+
+@layer components {
+  /* No specific components in this layer in your provided CSS */
+}
+
+@layer utilities {
+  /* Scrollbar styling */
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* Height utilities */
+  .chat-height {
+    @apply h-[calc(100vh - 8.125rem)] lg:h-[calc(100vh - 5.625rem)];
+  }
+  .inbox-height {
+    @apply h-[calc(100vh - 8.125rem)] lg:h-[calc(100vh - 5.625rem)];
+  }
+
+  /* Third-party libraries CSS */
+  /* Note: Ensure third-party styles are compatible with Tailwind and do not conflict */
+
+  /* Checkbox styling */
+  .tableCheckbox:checked ~ div span {
+    @apply opacity-100;
+  }
+  .tableCheckbox:checked ~ div {
+    @apply bg-primary border-primary;
+  }
+
+  /* ApexCharts styling */
+  .apexcharts-legend-text {
+    @apply !text-body dark:!text-bodydark;
+  }
+  /* Add more ApexCharts styles as needed */
+
+  /* Flatpickr styling */
+  .flatpickr-wrapper {
+    @apply w-full;
+  }
+  /* Add more Flatpickr styles as needed */
+
+  /* Map button styling */
+  .map-btn .jvm-zoom-btn {
+    @apply flex items-center justify-center w-7.5 h-7.5 rounded border border-stroke dark:border-strokedark hover:border-primary dark:hover:border-primary bg-white hover:bg-primary text-body hover:text-white dark:text-bodydark dark:hover:text-white text-2xl leading-none px-0 pt-0 pb-0.5;
+  }
+  /* Add more map button styles as needed */
+
+  /* Task checkbox styling */
+  .taskCheckbox:checked ~ .box span {
+    @apply opacity-100;
+  }
+  .taskCheckbox:checked ~ p {
+    @apply line-through;
+  }
+  .taskCheckbox:checked ~ .box {
+    @apply bg-primary border-primary dark:border-primary;
+  }
+
+  /* Custom input date styling */
+  .custom-input-date::-webkit-calendar-picker-indicator {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+  }
+  .custom-input-date-1::-webkit-calendar-picker-indicator {
+    background-image: url(./images/icon/icon-calendar.svg);
+  }
+  .custom-input-date-2::-webkit-calendar-picker-indicator {
+    background-image: url(./images/icon/icon-arrow-down.svg);
+  }
+
+  /* Cloak directive */
+  [x-cloak] {
+    display: none !important;
+  }
+}
